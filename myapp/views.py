@@ -1,15 +1,20 @@
-from rest_framework import viewsets
-from .serializers import ProductSerializer, CustomerSerializer, OrderSerializer
+from rest_framework.viewsets import ModelViewSet
 from .models import Product, Customer, Order
+from .serializers import ProductSerializer, CustomerSerializer, OrderSerializer
+from rest_framework.permissions import IsAuthenticated
+from .permissions import IsAdminOrReadOnly
 
-class ProductViewSet(viewsets.ModelViewSet):
+class ProductViewSet(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
 
-class CustomerViewSet(viewsets.ModelViewSet):
+class CustomerViewSet(ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+    permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
 
-class OrderViewSet(viewsets.ModelViewSet):
+class OrderViewSet(ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
