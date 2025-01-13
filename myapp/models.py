@@ -9,7 +9,7 @@ def validate_positive_price(value):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    price = models.DecimalField(max_digits=10, decimal_places=2, validators=[validate_positive_price])  # Валідатор
+    price = models.DecimalField(max_digits=10, decimal_places=2, validators=[validate_positive_price])
     available = models.BooleanField(default=True)
 
     def __str__(self):
